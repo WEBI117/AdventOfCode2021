@@ -9,10 +9,7 @@ def part1(input):
         for index,table in enumerate(tables):
             tables[index] = marktable(table,num)
             if(Bingo(table)):
-                print(table)
-                return 
-                #return getResult(table,num)
-    #print(tables)
+                return getResult(table,num)
 
 def part2(input):
     print ("Hello from part 2")
@@ -37,8 +34,14 @@ def Bingo(table):
 
     return False
 
-def getResult():
-    return True;
+def getResult(table, number):
+    sum = 0
+    call = int(number)
+    for row in table:
+        for ele in row:
+            if(ele != 'm'):
+                sum += int(ele)
+    return sum * call
 
 def arrayMarked(array):
     return all(map(lambda x: True if (x == 'm') else False, array))
