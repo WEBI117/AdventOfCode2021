@@ -13,29 +13,8 @@ argglobal
 set stal=2
 tabnew
 tabnew
-tabnew
 tabrewind
-edit day3.py
-argglobal
-balt day3.py
-setlocal fdm=manual
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-silent! normal! zE
-let &fdl = &fdl
-let s:l = 41 - ((22 * winheight(0) + 21) / 43)
-if s:l < 1 | let s:l = 1 | endif
-keepjumps exe s:l
-normal! zt
-keepjumps 41
-normal! 0
-tabnext
-edit ./test.txt
+edit ./day4.py
 argglobal
 balt ./test.txt
 setlocal fdm=manual
@@ -47,15 +26,16 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
+49,81fold
 let &fdl = &fdl
-let s:l = 12 - ((11 * winheight(0) + 21) / 43)
+let s:l = 15 - ((14 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 12
-normal! 05|
+keepjumps 15
+normal! 020|
 tabnext
-edit day3part2.txt
+edit ./day4part1.txt
 argglobal
 balt day3part2.txt
 setlocal fdm=manual
@@ -68,7 +48,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1 - ((0 * winheight(0) + 21) / 43)
+let s:l = 1 - ((0 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -88,7 +68,7 @@ setlocal fdn=20
 setlocal fen
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 1000 - ((42 * winheight(0) + 21) / 43)
+let s:l = 1000 - ((70 * winheight(0) + 35) / 71)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
@@ -96,10 +76,12 @@ keepjumps 1000
 normal! 0
 tabnext 1
 set stal=1
-badd +0 day3.py
-badd +0 day3part1.txt
-badd +0 day3part2.txt
-badd +0 ./test.txt
+badd +39 day3.py
+badd +12 ./test.txt
+badd +1 day3part2.txt
+badd +1 day3part1.txt
+badd +0 ./day4part1.txt
+badd +15 ./day4.py
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
 endif
@@ -111,6 +93,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

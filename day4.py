@@ -4,7 +4,6 @@ import numpy as np
 def part1(input):
     calls = input[0].split(',')
     tables = gettables(input)
-    tablescopy = tables
     for num in calls:
         for index,table in enumerate(tables):
             tables[index] = marktable(table,num)
@@ -12,7 +11,21 @@ def part1(input):
                 return getResult(table,num)
 
 def part2(input):
-    print ("Hello from part 2")
+    calls=input[0].split(',')
+    tables=gettables(input)
+    callcount=0
+    bingocount=0
+    for num in calls:
+        for index,table in enumerate(tables):
+            if(table != []):
+                tables[index]=marktable(table,num)
+                if(Bingo(table)):
+                    bingocount+=1
+                    if(bingocount == len(tables)):
+                        return getResult(table,num)
+                    tables[index]=[]
+
+
 
 def marktable(table,number):
     for index, row in enumerate(table):
@@ -22,13 +35,12 @@ def marktable(table,number):
 
 def Bingo(table):
     table = np.array(table)
-    colLen = len(table)
-    rowLen = len(table[0])
+    colLen = len(table[0])
     for row in table:
         if(arrayMarked(row)):
             return True
     for x in range(0,colLen):
-        col = table[x,:]
+        col = table[:,x]
         if(arrayMarked(col)):
             return True
 
@@ -79,5 +91,3 @@ if __name__ == "__main__":
         print(part2(lines))
     else:
         print("Incorrect part.")
-
-
